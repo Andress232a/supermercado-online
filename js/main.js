@@ -302,6 +302,8 @@ function mostrarProductosCategoria(categoria) {
 document.addEventListener('DOMContentLoaded', function() {
     // Mostrar productos
     mostrarProductos();
+    // Mostrar categorías
+    mostrarCategorias();
 
     // Event listener para el ícono del carrito
     const cartIcon = document.querySelector('.cart-icon');
@@ -559,14 +561,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (formularioContacto) {
         formularioContacto.addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            // Obtener datos del formulario
-            const datos = {
-                nombre: document.getElementById('nombre-contacto').value,
-                email: document.getElementById('email-contacto').value,
-                mensaje: document.getElementById('mensaje-contacto').value
-            };
-
+            enviarMensaje(formularioContacto);
             // Validar datos
             if (!datos.nombre || !datos.email || !datos.mensaje) {
                 mostrarNotificacion('Por favor complete todos los campos');
