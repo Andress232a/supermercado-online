@@ -1,0 +1,10 @@
+[build]
+  base = ""
+  publish = "./"
+  command = ""
+
+[build.environment]
+  NODE_VERSION = "14"
+
+[context.production.environment]
+  NODE_ENV = "production"
