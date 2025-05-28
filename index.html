@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperMarket - Tu Supermercado Online</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">SuperMarket</div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="abrirModal('inicio')">Inicio</a></li>
+                <li><a href="#" onclick="abrirModal('categorias')">Categorías</a></li>
+                <li><a href="#" onclick="abrirModal('productos')">Productos</a></li>
+                <li><a href="#" onclick="abrirModal('contacto')">Contacto</a></li>
+            </ul>
+            <div class="cart-icon" onclick="abrirModal('carrito')">
+                <i class="fas fa-shopping-cart"></i>
+                <span id="cart-count">0</span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Modal Inicio -->
+    <div id="modal-inicio" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Bienvenido a SuperMarket</h2>
+            <div class="inicio-content">
+                <div class="inicio-info">
+                    <h3>¿Por qué elegirnos?</h3>
+                    <ul>
+                        <li>Productos frescos y de calidad</li>
+                        <li>Entrega rápida y segura</li>
+                        <li>Precios competitivos</li>
+                        <li>Excelente servicio al cliente</li>
+                    </ul>
+                </div>
+                <div class="inicio-buttons">
+                    <button class="cta-button" onclick="abrirModal('productos')">
+                        <i class="fas fa-shopping-cart"></i> Ver Productos
+                    </button>
+                    <button class="cta-button" onclick="abrirModal('contacto')">
+                        <i class="fas fa-envelope"></i> Contacto
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Contacto -->
+    <div id="modal-contacto" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Contacto</h2>
+            <div class="contacto-content">
+                <div class="contacto-info">
+                    <div class="contacto-item">
+                        <i class="fas fa-phone"></i>
+                        <p>Teléfono: (506) 1234-5678</p>
+                    </div>
+                    <div class="contacto-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>Email: info@supermarket.com</p>
+                    </div>
+                    <div class="contacto-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Dirección: Avenida Central, San José</p>
+                    </div>
+                    <div class="contacto-item">
+                        <i class="fas fa-clock"></i>
+                        <p>Horario: Lunes a Domingo, 8:00 AM - 8:00 PM</p>
+                    </div>
+                </div>
+                <div class="contacto-form">
+                    <h3>Envíanos un mensaje</h3>
+                    <form id="formulario-contacto">
+                        <div class="form-group">
+                            <label for="nombre-contacto">Nombre:</label>
+                            <input type="text" id="nombre-contacto" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email-contacto">Email:</label>
+                            <input type="email" id="email-contacto" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensaje-contacto">Mensaje:</label>
+                            <textarea id="mensaje-contacto" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="cta-button">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Categorías -->
+    <div id="modal-categorias" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Categorías</h2>
+            <div class="categorias-container">
+                <div class="categorias-grid">
+                    <div class="categoria-card">
+                        <img src="images/lacteos.jpg" alt="Lácteos">
+                        <h3>Lácteos</h3>
+                    </div>
+                    <div class="categoria-card">
+                        <img src="images/alimentos.jpg" alt="Alimentos">
+                        <h3>Alimentos</h3>
+                    </div>
+                    <div class="categoria-card">
+                        <img src="images/frutas.jpg" alt="Frutas">
+                        <h3>Frutas</h3>
+                    </div>
+                    <div class="categoria-card">
+                        <img src="images/bebidas.jpg" alt="Bebidas">
+                        <h3>Bebidas</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Productos -->
+    <div id="modal-productos" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Nuestros Productos</h2>
+            <div class="productos-container">
+                <div class="productos-grid" id="productos-container">
+                    <!-- Los productos se cargarán dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Productos por Categoría -->
+    <div id="modal-productos-categoria" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="categoria-titulo">Productos de la Categoría</h2>
+            <div class="productos-container">
+                <div class="productos-grid" id="productos-categoria-container">
+                    <!-- Los productos filtrados se cargarán dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Carrito -->
+    <div id="modal-carrito" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Carrito de Compras</h2>
+            <div class="carrito-container">
+                <div class="carrito-items" id="carrito-items">
+                    <!-- Los productos del carrito se cargarán dinámicamente -->
+                </div>
+                <div class="carrito-total">
+                    <h3>Total: <span id="carrito-total">₡0</span></h3>
+                    <button class="cta-button" onclick="procesarCompra()">Procesar Compra</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Contacto -->
+    <div id="modal-contacto" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Contacto</h2>
+            <div class="contacto-info">
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <div class="info-content">
+                        <h3>Teléfono</h3>
+                        <p>(506) 1234-5678</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <div class="info-content">
+                        <h3>Email</h3>
+                        <p>info@supermarket.com</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div class="info-content">
+                        <h3>Dirección</h3>
+                        <p>Ciudad, Costa Rica</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <div class="info-content">
+                        <h3>Horario</h3>
+                        <p>Lunes a Domingo: 8:00 AM - 8:00 PM</p>
+                    </div>
+                </div>
+            </div>
+            <form id="contact-form" class="contacto-form">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="asunto">Asunto</label>
+                    <select id="asunto" name="asunto" required>
+                        <option value="">Selecciona un asunto</option>
+                        <option value="consulta">Consulta General</option>
+                        <option value="sugerencia">Sugerencia</option>
+                        <option value="reclamo">Reclamo</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="cta-button">Enviar Mensaje</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <main>
+        <section class="inicio">
+            <div class="inicio-container">
+                <div class="inicio-content">
+                    <div class="inicio-titulo">
+                        <h1>¡Bienvenido a <span class="marca">SuperMarket</span>!</h1>
+                        <p class="slogan">Los mejores productos al mejor precio</p>
+                        <div class="inicio-acciones">
+                            <a href="#" onclick="abrirModal('productos')" class="cta-button">
+                                <i class="fas fa-box"></i>
+                                Ver Productos
+                            </a>
+                            <a href="#" onclick="abrirModal('ofertas')" class="cta-button">
+                                <i class="fas fa-tag"></i>
+                                Ver Ofertas
+                            </a>
+                        </div>
+                        <div class="inicio-beneficios">
+                            <div class="beneficio">
+                                <i class="fas fa-truck"></i>
+                                <p>Envío a todo el país</p>
+                            </div>
+                            <div class="beneficio">
+                                <i class="fas fa-tags"></i>
+                                <p>Precios competitivos</p>
+                            </div>
+                            <div class="beneficio">
+                                <i class="fas fa-sync-alt"></i>
+                                <p>Devoluciones fáciles</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="inicio-imagenes">
+                    <div class="imagen-principal">
+                        <div class="imagen-overlay"></div>
+                        <img src="images/imagen-principal.jpg" alt="SuperMarket Principal" class="imagen-principal-img">
+                        <div class="imagen-contenido">
+                            <h2>¡Bienvenido a SuperMarket!</h2>
+                            <p>La mejor selección de productos de calidad</p>
+                            <div class="estrellas">
+                                <span class="estrella">⭐</span>
+                                <span class="estrella">⭐</span>
+                                <span class="estrella">⭐</span>
+                                <span class="estrella">⭐</span>
+                                <span class="estrella">⭐</span>
+                            </div>
+                            <div class="imagen-botones">
+                                <a href="#" onclick="abrirModal('productos')" class="imagen-button">Ver Productos</a>
+                                <a href="#" onclick="abrirModal('ofertas')" class="imagen-link">Ver Ofertas</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="imagen-secundaria">
+                        <div class="imagen-overlay"></div>
+                        <img src="images/imagen-secundaria.jpg" alt="SuperMarket Secundaria" class="imagen-secundaria-img">
+                        <div class="imagen-contenido">
+                            <h3>¡Ofertas Especiales!</h3>
+                            <p>Descuentos exclusivos para ti</p>
+                            <div class="imagen-detalle">
+                                <span class="etiqueta">¡20% OFF!</span>
+                                <span class="fecha">Hasta el 31 de mayo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal Carrito -->
+    <div id="modal-carrito" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal(this.closest('.modal'))">&times;</span>
+            <h2>Carrito de Compras</h2>
+            <div class="carrito-container">
+                <div id="carrito-items">
+                    <!-- Los productos se agregarán aquí dinámicamente -->
+                </div>
+                <div class="carrito-total">
+                    <h3>Total: <span id="carrito-total">₡0</span></h3>
+                    <button class="cta-button" onclick="procesarCompra()">Procesar Compra</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Proceso de Compra -->
+    <div id="modal-compra" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Proceso de Compra</h2>
+            <form id="formulario-compra">
+                <div class="form-group">
+                    <label for="nombre">Nombre completo:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono:</label>
+                    <input type="tel" id="telefono" name="telefono" required>
+                </div>
+                <div class="form-group">
+                    <label>Forma de Pago:</label>
+                    <div class="form-radio-group">
+                        <label>
+                            <input type="radio" name="pago" value="efectivo" checked>
+                            Efectivo
+                        </label>
+                        <label>
+                            <input type="radio" name="pago" value="tarjeta">
+                            Tarjeta de Crédito/Débito
+                        </label>
+                        <label>
+                            <input type="radio" name="pago" value="bancario">
+                            Transferencia Bancaria
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Entrega:</label>
+                    <div class="form-radio-group">
+                        <label>
+                            <input type="radio" name="entrega" value="tienda" checked>
+                            Recoger en Tienda
+                        </label>
+                        <label>
+                            <input type="radio" name="entrega" value="domicilio">
+                            Entrega a Domicilio
+                        </label>
+                    </div>
+                </div>
+                <div id="direccion-group" class="form-group" style="display: none;">
+                    <label for="direccion">Dirección:</label>
+                    <textarea id="direccion" name="direccion" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="total">Total a Pagar: $<span id="total-pago">0</span></label>
+                </div>
+                <button type="submit" class="cta-button">Confirmar Compra</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>Teléfono: (506) 1234-5678</p>
+                <p>Email: info@supermarket.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Horario</h3>
+                <p>Lunes a Domingo: 8:00 AM - 8:00 PM</p>
+            </div>
+            <div class="footer-section">
+                <h3>Redes Sociales</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 SuperMarket. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+{
+    "productos": [
+        {
+            "id": 1,
+            "nombre": "Leche Descremada",
+            "precio": 1200,
+            "imagen": "images/milk.jpg",
+            "categoria": "Lácteos",
+            "descripcion": "Leche descremada de alta calidad",
+            "enOferta": false,
+            "stock": 100
+        },
+        {
+            "id": 2,
+            "nombre": "Pan Integral",
+            "precio": 1500,
+            "imagen": "images/bread.jpg",
+            "categoria": "Alimentos",
+            "descripcion": "Pan integral con semillas",
+            "enOferta": true,
+            "stock": 50
+        },
+        {
+            "id": 3,
+            "nombre": "Manzanas",
+            "precio": 2500,
+            "imagen": "images/apples.jpg",
+            "categoria": "Frutas",
+            "descripcion": "Manzanas frescas y jugosas",
+            "enOferta": false,
+            "stock": 150
+        },
+        {
+            "id": 4,
+            "nombre": "Agua Natural",
+            "precio": 800,
+            "imagen": "images/water.jpg",
+            "categoria": "Bebidas",
+            "descripcion": "Agua purificada 1.5L",
+            "enOferta": false,
+            "stock": 200
+        },
+        {
+            "id": 5,
+            "nombre": "Queso Cheddar",
+            "precio": 3500,
+            "imagen": "images/cheese.jpg",
+            "categoria": "Lácteos",
+            "descripcion": "Queso cheddar madurado",
+            "enOferta": true,
+            "stock": 30
+        },
+        {
+            "id": 6,
+            "nombre": "Arroz Integral",
+            "precio": 2000,
+            "imagen": "images/rice.jpg",
+            "categoria": "Alimentos",
+            "descripcion": "Arroz integral 1kg",
+            "enOferta": false,
+            "stock": 75
+        },
+        {
+            "id": 7,
+            "nombre": "Juguito de Naranja",
+            "precio": 1200,
+            "imagen": "images/juice.jpg",
+            "categoria": "Bebidas",
+            "descripcion": "Juguito natural de naranja 1L",
+            "enOferta": false,
+            "stock": 100
+        },
+        {
+            "id": 8,
+            "nombre": "Yogurt Natural",
+            "precio": 1800,
+            "imagen": "images/yogurt.jpg",
+            "categoria": "Lácteos",
+            "descripcion": "Yogurt natural 1kg",
+            "enOferta": false,
+            "stock": 60
+        },
+        {
+            "id": 9,
+            "nombre": "Plátanos",
+            "precio": 1500,
+            "imagen": "images/bananas.jpg",
+            "categoria": "Frutas",
+            "descripcion": "Plátanos maduros",
+            "enOferta": true,
+            "stock": 120
+        },
+        {
+            "id": 10,
+            "nombre": "Cerveza Nacional",
+            "precio": 2500,
+            "imagen": "images/beer.jpg",
+            "categoria": "Bebidas",
+            "descripcion": "Cerveza nacional 355ml",
+            "enOferta": false,
+            "stock": 40
+        }
+    ]
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos - SuperMarket</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">SuperMarket</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="productos.html" class="active">Productos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+            <div class="cart-icon" onclick="abrirModal('carrito')">
+                <i class="fas fa-shopping-cart"></i>
+                <span id="cart-count">0</span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="productos">
+            <h2>Nuestros Productos</h2>
+            <div class="productos-grid" id="productos-container">
+                <!-- Los productos se cargarán dinámicamente -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Carrito -->
+    <div id="modal-carrito" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Carrito de Compras</h2>
+            <div class="carrito-container">
+                <div class="carrito-items" id="carrito-items">
+                    <!-- Los productos del carrito se cargarán dinámicamente -->
+                </div>
+                <div class="carrito-total">
+                    <h3>Total: <span id="carrito-total">₡0</span></h3>
+                    <button class="cta-button" onclick="procesarCompra()">Procesar Compra</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 SuperMarket. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Función para agregar al carrito
+        function agregarAlCarrito(id) {
+            const producto = productos.find(p => p.id === id);
+            if (!producto) return;
+
+            const itemExistente = carrito.find(item => item.id === id);
+            if (itemExistente) {
+                itemExistente.cantidad++;
+            } else {
+                carrito.push({
+                    ...producto,
+                    cantidad: 1
+                });
+            }
+
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            actualizarCarrito();
+            mostrarNotificacion(`¡${producto.nombre} agregado al carrito!`);
+        }
+
+        // Función para mostrar notificación
+        function mostrarNotificacion(mensaje) {
+            const notificacion = document.createElement('div');
+            notificacion.className = 'notification';
+            notificacion.textContent = mensaje;
+            document.body.appendChild(notificacion);
+
+            setTimeout(() => {
+                notificacion.remove();
+            }, 3000);
+        }
+    </script>
+    <script src="js/main.js"></script>
+</body>
+</html>
